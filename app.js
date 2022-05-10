@@ -1,7 +1,21 @@
-// default map layer
+var x=35.791188;
+var y=-78.636755;
+
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(loadPosition);
+    } 
+  }
+function loadPosition(position) {
+  x=position.coords.latitude; 
+  y=position.coords.longitude;
+  map= L.map('map', {
+    center: [x,y],
+    zoom: 8});
+}
 let map = L.map('map', {
     layers: MQ.mapLayer(),
-    center: [35.791188, -78.636755],
+    center: [x,y],
     zoom: 12
 });
     
@@ -11,7 +25,7 @@ let map = L.map('map', {
         // recreating new map layer after removal
         map = L.map('map', {
             layers: MQ.mapLayer(),
-            center: [35.791188, -78.636755],
+            center: [x, y],
             zoom: 12
         });
         
